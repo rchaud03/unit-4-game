@@ -41,16 +41,7 @@
                 <br>
             </div>
         </div>
-<!--
-         <div id="target">
-             <h2>TARGET:</h2>
-             <div id="targetNumber"></div>
-             <div id="score2">
-                <h2>Your Score:</h2>
-                <div id="yourScore"></div>
-            </div>
 
-         </div> -->
          <br>
          <br>
          <div id="buttons">
@@ -166,11 +157,32 @@
             wins ++;
             $("#winCount").text(wins);
             alert("You won!!!");
+            resetStats ();
         }
         var addLoss = function () {
             losses ++;
             $("#lossCount").text(losses);
             alert("You lost!!!");
+            resetStats ();
+        }
+
+        var resetStats = function () {
+
+      ranTarget = Math.floor(Math.random() * 50) + 19;
+      ranRed = Math.floor(Math.random() * 12) + 1;
+      ranBlu = Math.floor(Math.random() * 12) + 1;
+      ranYel = Math.floor(Math.random() * 12) + 1;
+      ranGre = Math.floor(Math.random() * 12) + 1;
+      userScore = 0;
+      redCount = 0;
+      bluCount = 0;
+      greCount = 0;
+      yelCount = 0;
+      redScore = 0;
+      bluScore = 0;
+      greScore = 0;
+      yelScore = 0;
+
         }
 })
 </script>
