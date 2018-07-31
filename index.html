@@ -121,18 +121,7 @@
         scoreWatch ();
         yourScore ();
         })
-//When you click yellow
-        $("#yel").on("click", function () {
-        console.log("yellow adds " + ranYel);
-        yelCount ++;
-        yelScore = yelCount * ranYel;
-        userScore = redScore + bluScore + greScore + yelScore;
-        console.log("yelScore=" + yelScore);
-        console.log("yelCount=" + yelCount);
-        console.log("Total score = " + userScore);
-        scoreWatch ();
-        yourScore ();
-        })
+
 //When you click green
         $("#gre").on("click", function () {
         console.log("green adds " + ranGre);
@@ -146,7 +135,21 @@
         yourScore ();
         })
 
-//Declaring functions
+//When you click yellow
+        $("#yel").on("click", function () {
+        console.log("yellow adds " + ranYel);
+        yelCount ++;
+        yelScore = yelCount * ranYel;
+        userScore = redScore + bluScore + greScore + yelScore;
+        console.log("yelScore=" + yelScore);
+        console.log("yelCount=" + yelCount);
+        console.log("Total score = " + userScore);
+        scoreWatch ();
+        yourScore ();
+        })
+
+
+//Declaring functions to be called
         var scoreWatch = function () {
         if (userScore > ranTarget) {
         addLoss ();
