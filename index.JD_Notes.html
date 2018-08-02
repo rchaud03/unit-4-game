@@ -44,27 +44,12 @@
 
          <br>
          <br>
-         <h2> <strong>INSTRUCTIONS</strong></h2>
-        <div id="instructions"> 
-         <p> You are given a random number at the start of each game. There are also four chrystals below.</p>
-         <p> By clicking on the christals you will add specific amount of points to your total score.</p>
-         <p>You win the game by matching your total score to the random number. You lose if your total score exceeds the random number</p>
-         <p>The value of each chrystal is hidden from you until you click on it.</p>
-
-        </div>
-         <!--
          <div id="buttons">
 
         <button id="red" type="button" class="btn btn-danger">Red</button>
         <button id="blu" type="button" class="btn btn-primary">Blue</button>
         <button id="gre" type="button" class="btn btn-success">Green</button>
         <button id="yel" type="button" class="btn btn-warning">Yellow</button>
-        </div> -->
-        <div>
-            <input id = "red" type="image" src="assets/images/red.png" class="btn btn-danger"></input>
-            <input id = "blu" type="image" src="assets/images/blue.png" class="btn btn-primary"></input>
-            <input id = "gre" type="image" src="assets/images/green.png" class="btn btn-success"></input>
-            <input id = "yel" type="image" src="assets/images/yellow.png" class="btn btn-warning"></input>
         </div>
     </div>
 
@@ -139,6 +124,15 @@
             scoreWatch ();
             yourScore ();
         })
+///////////////////////////////////////////////////////////////////////////////////////////////////
+        function clicked() {
+            var id = $(this).attr('id');            // grabs the id of the button clicked
+/////////////////////////////////////////////////////////////////////////////////////////////////
+
+        }
+
+        $(".btn").on("click", clicked);
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 //When you click yellow
         $("#yel").on("click", function () {
@@ -179,6 +173,14 @@
             alert("You lost!!!");
             resetStats ();
         }
+//////////////////////////////////////////////
+        var printRand = function () {
+            for (i = 0; i < colors.length; i++) {
+                console.log("loop " + i + " generated");
+            }
+        }
+        var colors = ["red", "blue", "green", "yellow"]
+////////////////////////////////////////////
 
         var resetStats = function () {
 
@@ -197,7 +199,7 @@
             greScore = 0;
             yelScore = 0;
 
-
+            
             console.log("Target number is " + ranTarget);
             console.log("Red random number is " + ranRed);
             console.log("Blue random number is " + ranBlu);
