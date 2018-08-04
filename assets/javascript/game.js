@@ -22,6 +22,7 @@ $(document).ready(function() {
     //Print random gem numbers and Targer
    //reset ();
     $("#targetNumber").text(ranTarget);
+    console.log("red = "+ ranRed, "blue = " + ranBlu, "green = "+ ranGre, "yellow = "+ ranYel)
 
     //Create Gem buttons
     for (var j=0; j < ranNum.length; j++) {

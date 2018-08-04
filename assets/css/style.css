@@ -7,6 +7,7 @@
     width: 980px;
     margin: 0 auto;
     border: 4px;
+
 }
 .btn, .crystal-image {
     width:100px;
@@ -15,24 +16,28 @@
 }
 
 #instructions, #Numbers {
-    background-color: white;
+   /* background-color: white;*/
     border: 5px;
     width: 400px;
+ /*   background-image: url('assets/images/krystal.png'); */
+
 }
+
 h1 {
 background-color: black;
 margin: 0;
 text-align: center;
 color: #efeee7;
 padding-top: 20px;
-padding-bottom: 2-px;
+padding-bottom: 20px;
 font-size: 28px;
 
 }
 
 body {
-background-color: #efeee7;
-margin: 0;
+/*background-color: #efeee7;*/
+ /*   background-image: url('assets/images/krystal.png'); */
+ margin: 0;
 font-family: :Georgia, 'Times New Roman', Times, serif;
 font-size: 18px;
 line-height: 150%;
