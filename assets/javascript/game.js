@@ -1,139 +1,107 @@
-
-
 $(document).ready(function() {
+////VARIABLES\\\\\\\
 
-//Declaring variables
-  var ranTarget = Math.floor(Math.random() * 50) + 19;
-  var ranRed = Math.floor(Math.random() * 12) + 1;
-  var ranBlu = Math.floor(Math.random() * 12) + 1;
-  var ranYel = Math.floor(Math.random() * 12) + 1;
-  var ranGre = Math.floor(Math.random() * 12) + 1;
-  var userScore = redScore + bluScore + greScore + yelScore;
-  var redCount = 0;
-  var bluCount = 0;
-  var greCount = 0;
-  var yelCount = 0;
-  var redScore = 0;
-  var bluScore = 0;
-  var greScore = 0;
-  var yelScore = 0;
-  var wins = 0;
-  var losses = 0;
+    // Random numbers
+    var ranTarget = Math.floor(Math.random() * 120) + 19;
+    
+    var ranRed = Math.floor(Math.random() * 12) + 1;
+    var ranBlu = Math.floor(Math.random() * 12) + 1;
+    var ranYel = Math.floor(Math.random() * 12) + 1;
+    var ranGre = Math.floor(Math.random() * 12) + 1;
+    
+    var ranNum = [ranRed, ranBlu, ranGre, ranYel]
 
-//TrouubleShooting Consoles
-    console.log("Target number is " + ranTarget);
-    console.log("Red random number is " + ranRed);
-    console.log("Blue random number is " + ranBlu);
-    console.log("Green random number is " + ranGre);        
-    console.log("Yellow random number is " + ranYel);
+    //gems images
+    var gemInsert;
+    var gems = [ "assets/images/red.png", "assets/images/blue.png","assets/images/green.png", "assets/images/yellow.png"];
+    var gemId = 0;
 
-//Write the target number to the HTML
-    //document.querySelector("#targetNumber").innerHTML = (" " + ranTarget);
+    var userScore = 0;
+    var wins = 0; var losses = 0;
+
+    //Print random gem numbers and Targer
+   //reset ();
     $("#targetNumber").text(ranTarget);
 
-//When you click red
-    $("#red").on("click", function () {
-        console.log("red adds " + ranRed);
-        redCount ++;
-        redScore = redCount * ranRed;
-        userScore = redScore + bluScore + greScore + yelScore;
-        console.log("redScore=" + redScore);
-        console.log("redCount=" + redCount);
-        console.log("Total score = " + userScore);
-        scoreWatch ();
-        yourScore ();
-    })
-//WHen you click blue
-    $("#blu").on("click", function () {
-        console.log("blu adds " + ranBlu);
-        bluCount ++;
-        bluScore = bluCount * ranBlu;
-        userScore = redScore + bluScore + greScore + yelScore;
-        console.log("bluScore=" + bluScore);
-        console.log("bluCount=" + bluCount);
-        console.log("Total score = " + userScore);
-        scoreWatch ();
-        yourScore ();
-    })
+    //Create Gem buttons
+    for (var j=0; j < ranNum.length; j++) {
+        var imageCrystal = $("<img>");
+        imageCrystal.addClass("crystal-image");
+        //imageCrystal.attr("src", "assets/images/"*".png");
 
-//When you click green
-    $("#gre").on("click", function () {
-        console.log("green adds " + ranGre);
-        greCount ++;
-        greScore = greCount * ranGre;
-        userScore = redScore + bluScore + greScore + yelScore;
-        console.log("greScore=" + greScore);
-        console.log("greCount=" + greCount);
-        console.log("Total score = " + userScore);
-        scoreWatch ();
-        yourScore ();
-    })
+        imageCrystal.attr("data-crystalvalue", ranNum[j]);
+        $("#crystals").append(imageCrystal);
+    };
 
-//When you click yellow
-    $("#yel").on("click", function () {
-        console.log("yellow adds " + ranYel);
-        yelCount ++;
-        yelScore = yelCount * ranYel;
-        userScore = redScore + bluScore + greScore + yelScore;
-        console.log("yelScore=" + yelScore);
-        console.log("yelCount=" + yelCount);
-        console.log("Total score = " + userScore);
-        scoreWatch ();
-        yourScore ();
-    })
+// assigning images to each button
+    function addGems () {
+    $('img').each(function() {
+        $(this).attr('id', + gemId);
+        gemId++;
+    });
+    };
+
+    addGems ();
 
 
-//Declaring functions to be called
-    var scoreWatch = function () {
-        if (userScore > ranTarget) {
-        addLoss ();
+    $("#0").attr("src", "assets/images/red.png");
+    $("#1").attr("src", "assets/images/blue.png");
+    $("#2").attr("src", "assets/images/green.png");
+    $("#3").attr("src", "assets/images/yellow.png");
+
+//    document.querySelector()
+  /*  for (var k =0; k < gems.length; k++) {
+        //    var gemInsert = gems[k];
+            var gemInsert = gems[k];
+            console.log(gemInsert);
+            $(".crystal-image").attr("src", gemInsert);
+
+    }; */
+
+    //Click function
+    $(".crystal-image").on("click", function () {
+        var crystalValue = ($(this).attr("data-crystalvalue"));
+        crystalValue = parseInt(crystalValue);
+        userScore += crystalValue; ///counter vs userScore
+        console.log("score: " + userScore);
+        $("#yourScore").text(userScore);
+        
+        if (userScore === ranTarget) {
+            //alert("You win!!!");
+            addWin ();
+
         }
-        else if (userScore === ranTarget) {
-            addWin();
-    }}
+        else if (userScore >= ranTarget) {
+           // alert("You lose!!!");
+           // losses++;
+            addLoss();
+        }
+    })
 
-    var yourScore = function () {
-        document.querySelector("#yourScore").innerHTML = " " + userScore;
-    }
-    
-    var addWin = function () {
+    function addWin () {
+        alert("You win!!!");
         wins ++;
         $("#winCount").text(wins);
-        alert("You won!!!");
-        resetStats ();
+       // reset ();
     }
-    var addLoss = function () {
+
+    function addLoss () {
+        alert("You lost!!!")
         losses ++;
         $("#lossCount").text(losses);
-        alert("You lost!!!");
-        resetStats ();
+       // reset ();
     }
-
-    var resetStats = function () {
-
-        ranTarget = Math.floor(Math.random() * 50) + 19;
-        ranRed = Math.floor(Math.random() * 12) + 1;
-        ranBlu = Math.floor(Math.random() * 12) + 1;
-        ranYel = Math.floor(Math.random() * 12) + 1;
-        ranGre = Math.floor(Math.random() * 12) + 1;
+    function randomGems () {
+    var ranRed = Math.floor(Math.random() * 12) + 1;
+    var ranBlu = Math.floor(Math.random() * 12) + 1;
+    var ranYel = Math.floor(Math.random() * 12) + 1;
+    var ranGre = Math.floor(Math.random() * 12) + 1;
+    };
+/*
+    function reset () {
         userScore = 0;
-        redCount = 0;
-        bluCount = 0;
-        greCount = 0;
-        yelCount = 0;
-        redScore = 0;
-        bluScore = 0;
-        greScore = 0;
-        yelScore = 0;
-
-
-        console.log("Target number is " + ranTarget);
-        console.log("Red random number is " + ranRed);
-        console.log("Blue random number is " + ranBlu);
-        console.log("Green random number is " + ranGre);            
-        console.log("Yellow random number is " + ranYel);
-
+        randomGems ();
         $("#targetNumber").text(ranTarget);
+        }; */
 
-    }
-})
+    })

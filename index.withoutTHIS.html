@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Homework4</title>
+
+  <!-- Added link to the jQuery Library -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet"  type="text/css" media="screen" href="assets/css/style.css"></link>
+
+</head>
+
+<body>
+<h1>Crystal Collector</h1>
+
+    <div id="container">
+        <div id"scoreboard">
+            <div id="score">
+                <div id="win">WINS: </div>
+                <div id="winCount">0</div>
+                <br>
+                <div id="loss">LOSSES: </div>
+                <div id="lossCount">0</div>
+                <br>
+            </div>
+        </div>
+
+
+        <div id"Numbers">
+            <div id="target">
+                <div id="win">TARGET   :   </div>
+                <div id="targetNumber"></div>
+                <br>
+                <div id="score2">Your Score   :   </div>
+                <div id="yourScore">0</div>
+                <br>
+            </div>
+        </div>
+
+         <br>
+         <br>
+         <h2> <strong>INSTRUCTIONS</strong></h2>
+        <div id="instructions"> 
+         <p> You are given a random number at the start of each game. There are also four chrystals below.</p>
+         <p> By clicking on the christals you will add specific amount of points to your total score.</p>
+         <p>You win the game by matching your total score to the random number. You lose if your total score exceeds the random number</p>
+         <p>The value of each chrystal is hidden from you until you click on it.</p>
+
+        </div>
+         <!--
+         <div id="buttons">
+
+        <button id="red" type="button" class="btn btn-danger">Red</button>
+        <button id="blu" type="button" class="btn btn-primary">Blue</button>
+        <button id="gre" type="button" class="btn btn-success">Green</button>
+        <button id="yel" type="button" class="btn btn-warning">Yellow</button>
+        </div> -->
+        <div>
+            <input id = "red" type="image" src="assets/images/red.png" class="btn btn-danger"></input>
+            <input id = "blu" type="image" src="assets/images/blue.png" class="btn btn-primary"></input>
+            <input id = "gre" type="image" src="assets/images/green.png" class="btn btn-success"></input>
+            <input id = "yel" type="image" src="assets/images/yellow.png" class="btn btn-warning"></input>
+        </div>
+    </div>
+
+  <script type="text/javascript">
+
+
+    $(document).ready(function() {
+
+//Declaring variables
+      var ranTarget = Math.floor(Math.random() * 50) + 19;
+      var ranRed = Math.floor(Math.random() * 12) + 1;
+      var ranBlu = Math.floor(Math.random() * 12) + 1;
+      var ranYel = Math.floor(Math.random() * 12) + 1;
+      var ranGre = Math.floor(Math.random() * 12) + 1;
+      var userScore = redScore + bluScore + greScore + yelScore;
+      var redCount = 0;
+      var bluCount = 0;
+      var greCount = 0;
+      var yelCount = 0;
+      var redScore = 0;
+      var bluScore = 0;
+      var greScore = 0;
+      var yelScore = 0;
+      var wins = 0;
+      var losses = 0;
+
+//TrouubleShooting Consoles
+        console.log("Target number is " + ranTarget);
+        console.log("Red random number is " + ranRed);
+        console.log("Blue random number is " + ranBlu);
+        console.log("Green random number is " + ranGre);        
+        console.log("Yellow random number is " + ranYel);
+
+//Write the target number to the HTML
+        //document.querySelector("#targetNumber").innerHTML = (" " + ranTarget);
+        $("#targetNumber").text(ranTarget);
+
+//When you click red
+        $("#red").on("click", function () {
+            console.log("red adds " + ranRed);
+            redCount ++;
+            redScore = redCount * ranRed;
+            userScore = redScore + bluScore + greScore + yelScore;
+            console.log("redScore=" + redScore);
+            console.log("redCount=" + redCount);
+            console.log("Total score = " + userScore);
+            scoreWatch ();
+            yourScore ();
+        })
+ //WHen you click blue
+        $("#blu").on("click", function () {
+            console.log("blu adds " + ranBlu);
+            bluCount ++;
+            bluScore = bluCount * ranBlu;
+            userScore = redScore + bluScore + greScore + yelScore;
+            console.log("bluScore=" + bluScore);
+            console.log("bluCount=" + bluCount);
+            console.log("Total score = " + userScore);
+            scoreWatch ();
+            yourScore ();
+        })
+
+//When you click green
+        $("#gre").on("click", function () {
+            console.log("green adds " + ranGre);
+            greCount ++;
+            greScore = greCount * ranGre;
+            userScore = redScore + bluScore + greScore + yelScore;
+            console.log("greScore=" + greScore);
+            console.log("greCount=" + greCount);
+            console.log("Total score = " + userScore);
+            scoreWatch ();
+            yourScore ();
+        })
+
+//When you click yellow
+        $("#yel").on("click", function () {
+            console.log("yellow adds " + ranYel);
+            yelCount ++;
+            yelScore = yelCount * ranYel;
+            userScore = redScore + bluScore + greScore + yelScore;
+            console.log("yelScore=" + yelScore);
+            console.log("yelCount=" + yelCount);
+            console.log("Total score = " + userScore);
+            scoreWatch ();
+            yourScore ();
+        })
+
+
+//Declaring functions to be called
+        var scoreWatch = function () {
+            if (userScore > ranTarget) {
+            addLoss ();
+            }
+            else if (userScore === ranTarget) {
+                addWin();
+        }}
+
+        var yourScore = function () {
+            document.querySelector("#yourScore").innerHTML = " " + userScore;
+        }
+        
+        var addWin = function () {
+            wins ++;
+            $("#winCount").text(wins);
+            alert("You won!!!");
+            resetStats ();
+        }
+        var addLoss = function () {
+            losses ++;
+            $("#lossCount").text(losses);
+            alert("You lost!!!");
+            resetStats ();
+        }
+
+        var resetStats = function () {
+
+            ranTarget = Math.floor(Math.random() * 50) + 19;
+            ranRed = Math.floor(Math.random() * 12) + 1;
+            ranBlu = Math.floor(Math.random() * 12) + 1;
+            ranYel = Math.floor(Math.random() * 12) + 1;
+            ranGre = Math.floor(Math.random() * 12) + 1;
+            userScore = 0;
+            redCount = 0;
+            bluCount = 0;
+            greCount = 0;
+            yelCount = 0;
+            redScore = 0;
+            bluScore = 0;
+            greScore = 0;
+            yelScore = 0;
+
+
+            console.log("Target number is " + ranTarget);
+            console.log("Red random number is " + ranRed);
+            console.log("Blue random number is " + ranBlu);
+            console.log("Green random number is " + ranGre);            
+            console.log("Yellow random number is " + ranYel);
+
+            $("#targetNumber").text(ranTarget);
+
+        }
+})
+</script>
+
+</body>
+
+</html>

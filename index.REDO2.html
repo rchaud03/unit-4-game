@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Homework4</title>
+
+  <!-- Added link to the jQuery Library -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet"  type="text/css" media="screen" href="assets/css/style.css"></link>
+
+</head>
+
+<body>
+<h1>Crystal Collector</h1>
+
+    <div id="container">
+        <div id"scoreboard">
+            <div id="score">
+                <div id="win">WINS: </div>
+                <div id="winCount">0</div>
+                <br>
+                <div id="loss">LOSSES: </div>
+                <div id="lossCount">0</div>
+                <br>
+            </div>
+        </div>
+
+
+
+
+         <br>
+         <br>
+         <h2> <strong>INSTRUCTIONS</strong></h2>
+        <div id="instructions"> 
+         <p> You are given a random number at the start of each game. There are also four chrystals below. By clicking on the christals you will add specific amount of points to your total score. You win the game by matching your total score to the random number. You lose if your total score exceeds the random number. The value of each chrystal is hidden from you until you click on it.</p>
+
+        </div>
+
+        <div id"Numbers">
+            <div id="target">
+                <div id="win">TARGET   :   </div>
+                <div id="targetNumber"></div>
+                <br>
+                <div id="score2">Your Score   :   </div>
+                <div id="yourScore">0</div>
+                <br>
+            </div>
+        </div>
+        <div>
+            <input id ="red" type="image" src="assets/images/red.png" value="redGem" class="btn crystal-image btn-danger"></input>
+            <input id ="blu" type="image" src="assets/images/blue.png" value="bluGem" class="btn crystal-image btn-primary"></input>
+            <input id ="gre" type="image" src="assets/images/green.png" value="greGem" class="btn crystal-image btn-success"></input>
+            <input id ="yel" type="image" src="assets/images/yellow.png" value="yelGem" lass="btn crystal-image btn-warning"></input>
+        </div>
+    </div>
+
+  <script type="text/javascript">
+
+
+    $(document).ready(function() {
+
+//Declaring variables
+    
+      var ranTarget = Math.floor(Math.random() * 50) + 19;
+      var ranRed = Math.floor(Math.random() * 12) + 1;
+      var ranBlu = Math.floor(Math.random() * 12) + 1;
+      var ranYel = Math.floor(Math.random() * 12) + 1;
+      var ranGre = Math.floor(Math.random() * 12) + 1;
+      var userScore = redScore + bluScore + greScore + yelScore;
+      var redCount = 0; var bluCount = 0; var greCount = 0; var yelCount = 0; 
+      var redScore = 0; var bluScore = 0; var greScore = 0; var yelScore = 0;
+      var wins = 0; var losses = 0;
+/// REDO      
+      var counter = 0;
+      var ranNum = [ranRed, ranBlu, ranGre, ranYel]//, ranTarget];    
+//TrouubleShooting Consoles
+        generatedNumbers ();
+
+function generatedNumbers () {
+    for (var i = 0; i < ranNum.length; i++) {
+        console.log("Red = "+ ranRed + ". Blue = " + ranBlu + ". Green = " + ranGre + ". Yellow = " + ranYel)
+};}
+
+for (var j = 0; j < ranNum.length; j++) {
+        var imageChrystal = $("<input>");
+        imageChrystal.attr("cValue", ranNum[j]);
+        
+        };
+
+
+//Write the target number to the HTML
+        //document.querySelector("#targetNumber").innerHTML = (" " + ranTarget);
+        $("#targetNumber").text(ranTarget);
+
+//When you click any button in the "chrystal-image" class
+        $(".crystal-image").on("click", function () {
+
+            var value = ($(this).attr("value"));
+            value = parseInt(value);
+            userScore += value;
+            console.log(`You Pressed ${this.value}`)
+            console.log("You clicked "+ this);
+            console.log("Total score is "+ userScore);
+            scoreWatch();
+
+        }
+        )
+
+        function scoreWatch () {
+
+                ranTarget = Math.floor(Math.random() * 50) + 19;
+                ranRed = Math.floor(Math.random() * 12) + 1;
+                ranBlu = Math.floor(Math.random() * 12) + 1;
+                ranYel = Math.floor(Math.random() * 12) + 1;
+                ranGre = Math.floor(Math.random() * 12) + 1;
+                userScore = 0;
+                redCount = 0;
+                bluCount = 0;
+                greCount = 0;
+                yelCount = 0;
+                redScore = 0;
+                bluScore = 0;
+                greScore = 0;
+                yelScore = 0;
+                // Calling other functions
+                generatedNumbers ();
+                $("#targetNumber").text(ranTarget);
+
+}
+
+
+    })
+</script>
+
+</body>
+
+</html>
