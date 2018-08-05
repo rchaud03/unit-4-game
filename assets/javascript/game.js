@@ -2,46 +2,62 @@ $(document).ready(function() {
 ////VARIABLES\\\\\\\
 
     // Random numbers
-    var ranTarget = ;//Math.floor(Math.random() * 101) + 19;
+    var ranTarget = Math.floor(Math.random() * 120) + 19;
     
-    var ranRed = ;//Math.floor(Math.random() * 12) + 1;
-    var ranBlu = ;//Math.floor(Math.random() * 12) + 1;
-    var ranYel = ;//Math.floor(Math.random() * 12) + 1;
-    var ranGre = ;//Math.floor(Math.random() * 12) + 1;
+    var ranRed = Math.floor(Math.random() * 12) + 1;
+    var ranBlu = Math.floor(Math.random() * 12) + 1;
+    var ranYel = Math.floor(Math.random() * 12) + 1;
+    var ranGre = Math.floor(Math.random() * 12) + 1;
     
     var ranNum = [ranRed, ranBlu, ranGre, ranYel]
 
     //gems images
+    var gemInsert;
+    var gems = [ "assets/images/red.png", "assets/images/blue.png","assets/images/green.png", "assets/images/yellow.png"];
     var gemId = 0;
 
     var userScore = 0;
     var wins = 0; var losses = 0;
- //-----------------------------------------------------------------------------------------------------  
-    //gameInit ();
+
+    //Print random gem numbers and Targer
+   //reset ();
+    $("#targetNumber").text(ranTarget);
+    console.log("red = "+ ranRed, "blue = " + ranBlu, "green = "+ ranGre, "yellow = "+ ranYel)
 
     //Create Gem buttons
     for (var j=0; j < ranNum.length; j++) {
-        var imageContainer = $("<img>");
-        imageContainer.addClass("crystal-image");
-        //imageContainer.attr("src", "assets/images/"*".png");                ///could never get this to work
-        imageContainer.attr("data-crystalvalue", ranNum[j]);    
-        $("#crystals").append(imageContainer);
+        var imageCrystal = $("<img>");
+        imageCrystal.addClass("crystal-image");
+        //imageCrystal.attr("src", "assets/images/"*".png");
+
+        imageCrystal.attr("data-crystalvalue", ranNum[j]);
+        $("#crystals").append(imageCrystal);
     };
 
-    // assigning id to each button
-    function addGemID () {
-        $('img').each(function() {
+// assigning images to each button
+    function addGems () {
+    $('img').each(function() {
         $(this).attr('id', + gemId);
         gemId++;
     });
     };
 
-    addGemID ();
-    //add Gem image to each id
-        $("#0").attr("src", "assets/images/red.png");
-        $("#1").attr("src", "assets/images/blue.png");
-        $("#2").attr("src", "assets/images/green.png");
-        $("#3").attr("src", "assets/images/yellow.png");
+    addGems ();
+
+
+    $("#0").attr("src", "assets/images/red.png");
+    $("#1").attr("src", "assets/images/blue.png");
+    $("#2").attr("src", "assets/images/green.png");
+    $("#3").attr("src", "assets/images/yellow.png");
+
+//    document.querySelector()
+  /*  for (var k =0; k < gems.length; k++) {
+        //    var gemInsert = gems[k];
+            var gemInsert = gems[k];
+            console.log(gemInsert);
+            $(".crystal-image").attr("src", gemInsert);
+
+    }; */
 
     //Click function
     $(".crystal-image").on("click", function () {
@@ -52,35 +68,41 @@ $(document).ready(function() {
         $("#yourScore").text(userScore);
         
         if (userScore === ranTarget) {
+            //alert("You win!!!");
             addWin ();
+
         }
         else if (userScore >= ranTarget) {
+           // alert("You lose!!!");
+           // losses++;
             addLoss();
         }
-    });
+    })
 
     function addWin () {
         alert("You win!!!");
         wins ++;
         $("#winCount").text(wins);
-        gameInit ();    };
+       // reset ();
+    }
 
     function addLoss () {
         alert("You lost!!!")
         losses ++;
         $("#lossCount").text(losses);
-        gameInit ();    };
-
-    function gameInit () {
-        userScore = 0;
-        $("#yourScore").text("0");
-        ranRed = Math.floor(Math.random() * 12) + 1;
-        ranBlu = Math.floor(Math.random() * 12) + 1;
-        ranYel = Math.floor(Math.random() * 12) + 1;
-        ranGre = Math.floor(Math.random() * 12) + 1;
-        ranTarget = Math.floor(Math.random() * 101) + 19;
-        console.log("red = "+ ranRed, "blue = " + ranBlu, "green = "+ ranGre, "yellow = "+ ranYel);
-        $("#targetNumber").text(ranTarget);
+       // reset ();
     }
+    function randomGems () {
+    var ranRed = Math.floor(Math.random() * 12) + 1;
+    var ranBlu = Math.floor(Math.random() * 12) + 1;
+    var ranYel = Math.floor(Math.random() * 12) + 1;
+    var ranGre = Math.floor(Math.random() * 12) + 1;
+    };
+/*
+    function reset () {
+        userScore = 0;
+        randomGems ();
+        $("#targetNumber").text(ranTarget);
+        }; */
 
     })
