@@ -23,6 +23,16 @@
 
 }
 
+#winCount {
+    color: green;
+    font-weight: 700;
+}
+#lossCount {
+    color: red;
+    font-weight: 700;
+}
+
+
 h1 {
 background-color: black;
 margin: 0;
