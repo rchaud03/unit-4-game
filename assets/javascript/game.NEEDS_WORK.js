@@ -2,17 +2,17 @@ $(document).ready(function() {
 ////VARIABLES\\\\\\\
 
     // Random numbers
-/*    var ranTarget = undefined ; //Math.floor(Math.random() * 101) + 19;
-    var ranRed = undefined; //Math.floor(Math.random() * 12) + 1;
+ /*   var ranTarget = undefined ; //Math.floor(Math.random() * 101) + 19;
+ /*   var ranRed = undefined; //Math.floor(Math.random() * 12) + 1;
     var ranBlu = undefined;//Math.floor(Math.random() * 12) + 1;
     var ranYel = undefined;//Math.floor(Math.random() * 12) + 1;
     var ranGre = undefined;//Math.floor(Math.random() * 12) + 1; */
     
-    var ranTarget = Math.floor(Math.random() * 101) + 19;
+    var ranTarget = Math.floor(Math.random() * 21) + 19;
     var ranRed = Math.floor(Math.random() * 12) + 1;
     var ranBlu = Math.floor(Math.random() * 12) + 1;
     var ranYel = Math.floor(Math.random() * 12) + 1;
-    var ranGre = Math.floor(Math.random() * 12) + 1;
+    var ranGre = Math.floor(Math.random() * 12) + 1;  // */
     var ranNum = [ranRed, ranBlu, ranGre, ranYel]
 
     //gems images
@@ -21,12 +21,11 @@ $(document).ready(function() {
     var userScore = 0 ;
     var wins = 0; var losses = 0;
  //-----------------------------------------------------------------------------------------------------\\  
- console.log("INIT: red = "+ ranRed, "blue = " + ranBlu, "green = "+ ranGre, "yellow = "+ ranYel);
- $("#targetNumber").text(ranTarget);
+ //console.log("INIT: red = "+ ranRed, "blue = " + ranBlu, "green = "+ ranGre, "yellow = "+ ranYel);
+ //console.log("Target is " + ranTarget);
+ //$("#targetNumber").text(ranTarget);
 
-
- 
- gameInit ();
+   gameInit ();
 
     //Create Gem buttons
     function gemBuild () {
@@ -49,10 +48,12 @@ $(document).ready(function() {
 
     addGemID ();
     //add Gem image to each id
+    function addGemID2 () {
         $("#0").attr("src", "assets/images/red.png");
         $("#1").attr("src", "assets/images/blue.png");
         $("#2").attr("src", "assets/images/green.png");
         $("#3").attr("src", "assets/images/yellow.png");
+};
 
     //Click function
     $(".crystal-image").on("click", function () {
@@ -93,8 +94,13 @@ $(document).ready(function() {
         console.log("red = "+ ranRed, "blue = " + ranBlu, "green = "+ ranGre, "yellow = "+ ranYel);
         $("#yourScore").text(userScore);
         gemBuild ();
-
-        
+        //console.log("red = "+ ranRed, "blue = " + ranBlu, "green = "+ ranGre, "yellow = "+ ranYel);
+        addGemID();
+        addGemID2 ();
+     /*   $("#0").attr("data-crystalvalue", ranRed);
+        $("#1").attr("data-crystalvalue", ranBlu);
+        $("#2").attr("data-crystalvalue", ranGre);
+        $("#3").attr("data-crystalvalue", ranYel);*/
     }
 
     })
