@@ -8,7 +8,7 @@ $(document).ready(function() {
     var ranYel = undefined;//Math.floor(Math.random() * 12) + 1;
     var ranGre = undefined;//Math.floor(Math.random() * 12) + 1; */
     
-    var ranTarget = Math.floor(Math.random() * 21) + 19;
+    var ranTarget = Math.floor(Math.random() * 101) + 19;
     var ranRed = Math.floor(Math.random() * 12) + 1;
     var ranBlu = Math.floor(Math.random() * 12) + 1;
     var ranYel = Math.floor(Math.random() * 12) + 1;
